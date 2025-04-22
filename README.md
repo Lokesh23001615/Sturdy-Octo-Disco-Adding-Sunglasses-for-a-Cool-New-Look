@@ -25,4 +25,72 @@ Welcome to Sturdy Octo Disco, a fun and creative project designed to overlay sun
 - Adding flair to your photos for fun.
 - Practicing computer vision workflows.
 
-Feel free to fork, contribute, or customize this project for your creative needs!
+## Program:
+### Name: Lokesh.M
+### Reg.no:212223230114
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('mypic.png')
+plt.imshow(img[:,:,::-1]);plt.title("Face")
+
+glassPNG=cv2.imread('glass.png',-1)
+plt.imshow(glassPNG[:,:,::-1]);plt.title("glass")
+
+glassPNG = cv2.resize(glassPNG,(200,60))
+print("image Dimension =",glassPNG.shape)
+
+glassBGR = glassPNG[:,:,0:3]
+glassMask1 = glassPNG[:,:,3]
+plt.figure(figsize=[15,15])
+plt.subplot(121);plt.imshow(glassBGR[:,:,::-1]);plt.tit('Sunglass Color channels');
+plt.subplot(122);plt.imshow(glassMask1,cmap='gray');plt.title('Sunglass Alpha channel');
+
+faceWithGlasses= img.copy()
+faceWithGlasses[160:220,105:305]=glassBGR
+plt.imshow(faceWithGlasses[...,::-1])
+
+glassMask = cv2.merge((glassMask1,glassMask1,glassMask1))
+glassMask = np.uint8(glassMask/255)
+faceWithGlassesArithmetic = img.copy()
+eyeROI= faceWithGlassesArithmetic[160:220,105:305]
+maskedEye = cv2.multiply(eyeROI,(1-  glassMask ))
+maskedGlass = cv2.multiply(glassBGR,glassMask)
+eyeRoiFinal = cv2.add(maskedEye, maskedGlass)
+plt.figure(figsize=[20,20])
+plt.subplot(131);plt.imshow(maskedEye[...,::-1]);plt.title("Masked Eye Region")
+plt.subplot(132);plt.imshow(maskedGlass[...,::-1]);plt.title("Masked Sunglass Region")
+plt.subplot(133);plt.imshow(eyeRoiFinal[...,::-1]);plt.title("Augmented Eye and Sunglass")
+
+faceWithGlassesArithmetic[160:220,105:305]=eyeRoiFinal
+plt.figure(figsize=[10,10]);
+plt.subplot(121);plt.imshow(img[:,:,::-1]); plt.title("Original Image");
+plt.subplot(122);plt.imshow(faceWithGlassesArithmetic[:,:,::-1]);plt.title("With Sunglasses");
+```
+## Output:
+### 1.Original image:
+![image](https://github.com/user-attachments/assets/87f5fd19-0d04-4899-9331-a0c07bb00da4)
+
+
+### 2.Glass:
+![image](https://github.com/user-attachments/assets/5a6c1ac5-2f20-4e35-8ac0-24b41203e3c6)
+
+
+### 3.Glass color channel:
+![image](https://github.com/user-attachments/assets/57e6fe9f-6ae8-43aa-8adf-9c6f9507a73e)
+
+
+### 4.Face With Glass:
+![image](https://github.com/user-attachments/assets/ec5941bb-d5e0-46fc-9273-19230a23dbda)
+
+
+
+### 5.Final image with glass:
+![image](https://github.com/user-attachments/assets/7a4213fb-99c2-489a-9c8f-b50e523d5448)
+
+
+## Result:
+Thus, the creative project designed to overlay sunglasses on individual passport size photo has been successfully executed.
