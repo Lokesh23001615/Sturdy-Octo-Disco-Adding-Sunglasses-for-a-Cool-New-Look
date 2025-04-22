@@ -72,24 +72,23 @@ plt.subplot(122);plt.imshow(faceWithGlassesArithmetic[:,:,::-1]);plt.title("With
 ```
 ## Output:
 ### 1.Original image:
-![image](https://github.com/user-attachments/assets/87f5fd19-0d04-4899-9331-a0c07bb00da4)
+
 
 
 ### 2.Glass:
-![image](https://github.com/user-attachments/assets/5a6c1ac5-2f20-4e35-8ac0-24b41203e3c6)
+
 
 
 ### 3.Glass color channel:
-![image](https://github.com/user-attachments/assets/57e6fe9f-6ae8-43aa-8adf-9c6f9507a73e)
+
 
 
 ### 4.Face With Glass:
-![image](https://github.com/user-attachments/assets/ec5941bb-d5e0-46fc-9273-19230a23dbda)
 
 
 
 ### 5.Final image with glass:
-![image](https://github.com/user-attachments/assets/7a4213fb-99c2-489a-9c8f-b50e523d5448)
+
 
 
 ## Result:
